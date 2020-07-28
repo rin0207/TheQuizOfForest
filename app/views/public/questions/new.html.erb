@@ -1,0 +1,45 @@
+<div>
+	<div>
+		<p>新規クイズ作成</p>
+		<div>
+		    <%= form_for(@question, url:new_public_question_path) do |f| %>
+		        <div>
+		    	    <%= f.label :content, "問題文" %>
+		    	    <%= f.text_area :content %>
+		        </div>
+		        <%= f.fields_for :choice do |i| %><!--choiceテーブルに保存-->
+		        <P>
+		        	正解の選択肢には正答ボタンにチェックを入れて下さい。
+		        </P>
+		        <div>
+		        	<%= i.label :sentence, "選択肢1" %>
+		        	<%= i.text_area :sentence %>
+		        	<%= i.radio_button :is_answer, :true %>
+			        <%= i.label :is_answer, "正答" %>
+
+			        <%= i.label :sentence, "選択肢2" %>
+		        	<%= i.text_area :sentence %>
+		        	<%= i.radio_button :is_answer, :true %>
+			        <%= i.label :is_answer, "正答" %>
+
+			        <%= i.label :sentence, "選択肢3" %>
+		        	<%= i.text_area :sentence %>
+		        	<%= i.radio_button :is_answer, :true %>
+			        <%= i.label :is_answer, "正答" %>
+
+			        <%= i.label :sentence, "選択肢4" %>
+		        	<%= i.text_area :sentence %>
+		        	<%= i.radio_button :is_answer, :true %>
+			        <%= i.label :is_answer, "正答" %>
+		        </div>
+		        <% end %>
+		        <div>
+		        	<%= f.label :comment, "解説" %>
+		        	<%= f.text_area :comment %>
+		        </div>
+		        <div>
+		        	<%= f.submit "申請する" %>
+		        </div>
+		    <% end %>
+	    </div>
+</div>

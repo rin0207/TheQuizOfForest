@@ -1,0 +1,45 @@
+<div>
+	<div>
+		<nav>
+			<%= image_tag %>
+		</nav>
+		<% if customer_signed_in? %>
+		    <nav>
+		    	<p>ようこそ<%= current_customer.name %>さん</p>
+		    </nav>
+		    <nav>
+		    	<ul>
+		    		<li>
+		    			<%= link_to "About", about_path %>
+		    		</li>
+		    		<li>
+		    			<%= link_to "Quiz一覧", public_question_path %>
+		    		</li>
+		    		<li>
+		    			<%= link_to "マイページ", public_customer_path(current_customer) %>
+		    		</li>
+		    		<li>
+		    			<!--<%= link_to "いいね一覧", public_customer_path %>-->
+		    		</li>
+		    	</ul>
+		    </nav>
+		<% else %>
+		    <nav>
+		    	<p>ようこそゲストさん！</p>
+		    </nav>
+		    <nav>
+		    	<ul>
+		    		<li>
+		    			<%= link_to "About", about_path %>
+		    		</li>
+		    		<li>
+		    			<%= link_to "Quiz一覧", public_question_path %>
+		    		</li>
+		    		<li>
+		    			<%= link_to "新規会員登録", public_sessons_path %>
+		    		</li>
+		    	</ul>
+		    </nav>
+		<% end %>
+	</div>
+</div>

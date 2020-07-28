@@ -10,6 +10,33 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="navbar navbar-fixed-top">
+      <% if request.fullpath.include? "admin" %><!--　管理者なら -->
+          <nav>管理者ページ</nav>
+          <% if admin_signed_in? %>
+          <nav>
+            <ul>
+              <li>
+                <%= link_to "会員一覧", admin_customer_path %>
+              </li>
+              <li>
+                <%= link_to "申請中一覧", admin_question_path %>
+              </li>
+              <li>
+                <%= link_to "クイズ一覧", admin_question_path %>
+              </li>
+              <li>
+                <%= link_to "ログアウト",destroy_administrator_session_path, method: :delete %>
+              </li>
+            </ul>
+          </nav>
+      <% else %><!--　会員なら -->
+        <%= render 'layouts/customers_header' %>
+      <% end %>
+    </header>
+    <main>
+      <div style="margin-top: 100px"></div>
+        <%= yield %>
+    </main>
   </body>
 </html>
