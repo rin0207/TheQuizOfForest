@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.question-solve{
+	margin-bottom: 2%;
+	padding: 3%;
+	border: solid black 1px;
+	border-radius: 15px;
+	background-color: lightcyan;
+}
+.question-content{
+	padding-bottom: 3%;
+	font-size: large;
+	font-weight: bold;
+}
+.question-choice{
+	display: flex;
+}
+.question-genre{
+	width: 15%;
+	text-align: center;
+	margin-top: 1%;
+	border: solid yellow 1px;
+	border-radius: 20px;
+	background-color: yellow;
+}

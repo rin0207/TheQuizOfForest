@@ -1,21 +1,28 @@
-<div>
-	<div>
+<div class="row">
+	<div class="col-xs-6 col-xs-offset-3">
 		<P>新着クイズ一覧</P>
 		<div>
 			<% @question.each do |question| %>
-			    <div>
-			    	<span>
-			    		問題文
+			    <div class="question-solve">
+			    	<div class="question-content">
+			    		Q.
 			    		<%= question.content %>
-			    	</span>
-			    	<span>
+			    	</div>
+			    	<div>
 			    		<% question.choices.each do |choice| %>
-			    		    <%= choice.sentence, class: "check" %>
+			    			<div class="check btn btn-info btn-block question-choice">
+			    		    	<%= choice.sentence %>
+			    		    </div>
 			    		<% end %>
-			    	</span>
-			    	<span class="comment", style="display:none"><!-- 解説は初期状態では非表示 -->
+			    	</div>
+			    	<div>
+			    		<div class="question-genre">
+			    			<%= question.genre.name %>
+			    		</div>
+			    	</div>
+			    	<div class="comment", style="display:none"><!-- 解説は初期状態では非表示 -->
 			    		<%= question.comment %>
-			    	</span>
+			    	</div>
 			    </div>
 			<% end %>
 		</div>

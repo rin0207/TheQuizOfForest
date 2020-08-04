@@ -1,0 +1,27 @@
+<div>
+	<div>
+		<P>クイズ一覧</P>
+		<div>
+			<% @questions.each do |question| %>
+			    <div>
+			    	<span>
+			    		問題文
+			    		<%= question.content %>
+			    	</span>
+			    	<span>
+			    		<% question.choices.each_with_index do |choice| %>
+			    		    選択肢
+			    		    <%= choice.sentence %>
+			    		<% end %>
+			    	</span>
+			    	<span>
+			    		解説
+			    		<%= question.comment %>
+			    	</span>
+			    	<span>
+			    		<%= link_to "編集する", edit_admin_question_path(question) %>
+			    	</span>
+			    </div>
+			<% end %>
+		</div>
+	</div>

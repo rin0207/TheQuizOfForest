@@ -1,13 +1,11 @@
 <div>
 	<div>
-		<p><%= current_customer.name %>さんのマイページ</p>
+		<p><%= @customer.name %>さんのマイページ</p>
 		<div>
-			Name<%= current_customer.name %>
-			Email<%= current_customer.email %>
-			<%= link_to "変更する", edit_registration_path(current_customer) %>
+			Name<%= @customer.name %>
+			Email<%= @customer.email %>
 		</div>
 		<div>
-			<p>作成したクイズ一覧</p>
 			<% @question.each do |question| %>
 			    <div>
 			    	<span>
@@ -16,11 +14,11 @@
 			    	</span>
 			    	<span>
 			    		<% question.choices.each do |choice| %>
-			    		    <%= choice.sentence %>
+			    		    <%= choice.sentence, class: "check" %>
 			    		<% end %>
 			    	</span>
 			    	<span>
-			    		<!-- 自分で作成した問題は解説を非表示しない -->
+			    		<!-- このページでは解説を非表示しない -->
 			    		<%= question.comment %>
 			    	</span>
 			    	<span>
@@ -28,9 +26,6 @@
 			    	</span>
 			    </div>
 			<% end %>
-		</div>
-		<div>
-			<%= link_to "新しいクイズを作る", new_public_question_path %>
 		</div>
 	</div>
 </div>

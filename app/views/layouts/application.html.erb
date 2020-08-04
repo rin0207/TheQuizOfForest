@@ -10,33 +10,36 @@
   </head>
 
   <body>
-    <header class="navbar navbar-fixed-top">
+    <header class="navbar-fixed-top" style="background-color: aquamarine">
       <% if request.fullpath.include? "admin" %><!--　管理者なら -->
           <nav>管理者ページ</nav>
           <% if admin_signed_in? %>
           <nav>
             <ul>
               <li>
-                <%= link_to "会員一覧", admin_customer_path %>
+                <%= link_to "会員一覧", admin_customers_path %>
               </li>
               <li>
-                <%= link_to "申請中一覧", admin_question_path %>
+                <%= link_to "申請中一覧", admin_questions_path %>
               </li>
               <li>
-                <%= link_to "クイズ一覧", admin_question_path %>
+                <%= link_to "クイズ一覧", admin_questions_path %>
               </li>
               <li>
-                <%= link_to "ログアウト",destroy_administrator_session_path, method: :delete %>
+                <%= link_to "ログアウト",destroy_admin_session_path, method: :delete %>
               </li>
             </ul>
           </nav>
+          <% end %>
       <% else %><!--　会員なら -->
         <%= render 'layouts/customers_header' %>
       <% end %>
     </header>
     <main>
       <div style="margin-top: 100px"></div>
+      <div class="container">
         <%= yield %>
+      </div>
     </main>
   </body>
 </html>

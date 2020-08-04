@@ -1,0 +1,33 @@
+<div>
+	<div>
+		<P>会員一覧</P>
+		<table>
+			<thead>
+				<tr>
+					<th>会員ID</th>
+					<th>ユーザ名</th>
+					<th>Email</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+			    <% @customers.each do |customer| %>
+			    <tr>
+			    	<td>
+			    		<%= customer.id %>
+			    	</td>
+			    	<td>
+			    		<%= customer.name %>
+			    	</td>
+			    	<td>
+			    		<%= customer.email %>
+			    	</td>
+			    	<td>
+			    		<%= link_to "クイズ一覧", admin_customer_path(@customer) %>
+			    	</td>
+			    </tr>
+			    <& end %>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,14 +1,18 @@
 class Public::QuestionsController < ApplicationController
 	def new
 		@question = Question.new
-		@question.choices.build #buildメソッド(newと似たようなもの)
+		4.times do |n|
+			@question.choices.build #buildメソッド(newと似たようなもの)
+	    end
 	end
 
 	def create
 		@question = Question.new(question_params)
-		@customer = current_customer
-		@question.save
-		redirect_to public_customer_path(@customer)
+		if @question.save
+			redirect_to public_customer_path(current_customer)
+		else
+			redirect_back(fallback_location: root_path)
+		end
 	end
 
 	def index
@@ -17,6 +21,6 @@ class Public::QuestionsController < ApplicationController
 
 	private
 	def question_params
-		params.require(:question).permit(:content, :comment, choice_attributes:[:id, :sentence, :is_answer])
+		params.require(:question).permit(:content, :comment, :genre_id, choice_attributes:[:id, :sentence, :is_answer])
 	end
 end

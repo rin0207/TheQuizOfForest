@@ -1,0 +1,22 @@
+<div>
+	<div>
+		<P>許可待ちクイズ一覧</P>
+		<div>
+			<% @question.each do |question| %>
+			    <div>
+			    	<span>
+			    		問題文
+			    		<%= question.content %>
+			    	</span>
+			    	<span>
+			    		<% question.choices.each do |choice| %>
+			    		    <%= choice.sentence, class: "check" %>
+			    		<% end %>
+			    	</span>
+			    	<span>
+			    		<%= question.comment %>
+			    	</span>
+			    </div>
+			<% end %>
+		</div>
+	</div>
