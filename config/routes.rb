@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root "homes#top"
   get "/about" => "homes#about"
+  get "public/questions/search" => "public/questions#search"
+  post 'questions/:question_id/likes' => "likes#create"
+  delete 'questions/:question_id/likes' => "likes#destroy"
   
   #deviseのcontrollerを二つ作ったため、それぞれのルーティングが必要
   devise_for :admins, :controllers => {
@@ -16,6 +19,10 @@ Rails.application.routes.draw do
     	resources :questions, only: [:index, :new, :create, :update, :edit]
     	resources :choices
       resources :customers
+      resources :genres, only: [:index] do
+        resources :questions, only: [:index]
+      end
+
     end 
 
 

@@ -1,36 +1,46 @@
-<div>
-	<div>
+<div class="row">
+	<div class="col-xs-3">
 		<p><%= current_customer.name %>さんのマイページ</p>
 		<div>
 			Name<%= current_customer.name %>
 			Email<%= current_customer.email %>
 			<%= link_to "変更する", edit_registration_path(current_customer) %>
 		</div>
-		<div>
+	</div>
+		<div class="col-xs-6">
 			<p>作成したクイズ一覧</p>
+			<div>
 			<% @question.each do |question| %>
-			    <div>
-			    	<span>
-			    		問題文
+			    <div class="question-solve">
+			    	<div class="question-content">
+			    		Q.
 			    		<%= question.content %>
-			    	</span>
-			    	<span>
+			    	</div>
+			    	<div>
 			    		<% question.choices.each do |choice| %>
-			    		    <%= choice.sentence %>
+			    			<div class="check btn btn-info btn-block question-choice">
+			    		    	<%= choice.sentence %>
+			    		    </div>
 			    		<% end %>
-			    	</span>
-			    	<span>
-			    		<!-- 自分で作成した問題は解説を非表示しない -->
+			    	</div>
+			    	<div>
+			    		<div class="question-genre">
+			    			<%= question.genre.name %>
+			    		</div>
+			    		<div>
+			    			<td id="like-<%= question.id %>">
+  								<%= render partial: "likes/like", locals: { question: question } %>
+							</td>
+			    		</div>
+			    	</div>
+			    	<div class="comment">
+			    		<!-- 自分で作ったクイズの解説は非表示しない -->
 			    		<%= question.comment %>
-			    	</span>
-			    	<span>
-			    		<%= link_to "編集する", edit_public_question_path %>
-			    	</span>
+			    	</div>
 			    </div>
 			<% end %>
 		</div>
 		<div>
 			<%= link_to "新しいクイズを作る", new_public_question_path %>
 		</div>
-	</div>
 </div>

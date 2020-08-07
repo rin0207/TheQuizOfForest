@@ -1,35 +1,57 @@
-<div>
-	<div>
+<div class="row">
+	<div class="main-top"></div>
+	<div class="col-xs-6 col-xs-offset-4">
 		<p>新規クイズ作成</p>
-		<div>
-		    <%= form_for(@question, url: admin_questions_path) do |f| %>
-		        <div>
-		    	    <%= f.label :content, "問題文" %>
-		    	    <%= f.text_area :content %>
+		<div class="row">
+		    <%= form_for(@question, url: public_questions_path) do |f| %>
+		        <div class="form-group">
+		    	    <label class="col-xs-2">問題文</label>
+		    	    <div class="col-xs-10">
+		    	    	<%= f.text_area :content,{class: 'question-form'} %>
+		    		</div>
 		        </div>
-		        <P>
-		        	正解の選択肢には正答ボタンにチェックを入れて下さい。
-		        </P>
+		        <div class="col-xs-10">
+		        	<p style="margin-top: 20px;">
+		        		＊正解の選択肢には正答ボタンにチェックを入れて下さい。
+		        	</p>
+		        </div>
 		        <%= f.fields_for :choices do |i| %><!--choiceテーブルに保存-->
 		        
-		        <div>
-		        	<%= i.label :sentence, "選択肢#{i.index+1}" %>
-		        	<%= i.text_area :sentence %>
-		        	<%= i.radio_button :is_answer, :true %>
-			        <%= i.label :is_answer, "正答" %>
+		        <div class="form-group row">
+		        	<div class="col-xs-2" style="margin-left: 15px; ">
+		        		<%= i.label :sentence, "選択肢#{i.index+1}" %>
+		        	</div>
+		        	<div class="col-xs-7">
+		        		<%= i.text_area :sentence,{class: 'choice-form'} %>
+		        	</div>
+		        	<div class="col-xs-2">
+		        		<%= i.radio_button :is_answer, :true %>
+			        	<%= i.label :is_answer, "正答" %>
+			        </div>
 		        </div>
 		        <% end %>
-		        <div>
-		        	<%= f.label :comment, "解説" %>
-		        	<%= f.text_area :comment %>
+
+		        <div class="form-group">
+		        	<div class="col-xs-2">
+		        		<%= f.label :comment, "解説" %>
+		        	</div>
+		        	<div class="col-xs-10">
+		        		<%= f.text_area :comment,{class: 'question-form'} %>
+		        	</div>
 		        </div>
-		        <div>
-		        	<%= f.label :genre_id, "ジャンル" %>
-		        	<%= f.collection_select(:genre_id, Genre.all, :id, :name, promote: "選択してください") %>
+		        <div class="form-group">
+		        	<div class="col-xs-2">
+		        		<%= f.label :genre_id, "ジャンル" %>
+		        	</div>
+		        	<div class="col-xs-5">
+		        		<%= f.collection_select(:genre_id, Genre.all, :id, :name, promote: "選択してください") %>
+		        	</div>
 		        </div>
-		        <div>
-		        	<%= f.submit "申請する" %>
+		        <div class="form-group col-xs-10" style="margin-top: 30px;">
+		        	<%= f.submit "申請する",{class: 'btn btn-primary'} %>
 		        </div>
 		    <% end %>
 	    </div>
+	</div>
 </div>
+<div class="main-bottom"></div>

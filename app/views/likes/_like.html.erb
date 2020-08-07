@@ -1,0 +1,10 @@
+<% if Like.find_by(customer_id: current_customer.id, question_id: question.id) %>
+  <%= link_to "/questions/#{question.id}/likes", method: :delete, remote: true do %>
+    <p>★</p>
+  <% end %>
+<% else %>
+  <%= link_to "/questions/#{question.id}/likes", method: :post, remote: true do %>
+    <p>☆</p>
+    <% end %>
+<% end %>
+<%= question.likes.length %>

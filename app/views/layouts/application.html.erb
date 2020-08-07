@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <header class="navbar-fixed-top" style="background-color: aquamarine">
+    <header class="navbar-fixed-top">
       <% if request.fullpath.include? "admin" %><!--　管理者なら -->
           <nav>管理者ページ</nav>
           <% if admin_signed_in? %>
@@ -36,8 +36,8 @@
       <% end %>
     </header>
     <main>
-      <div style="margin-top: 100px"></div>
-      <div class="container">
+      <div style="margin-top: 83px"></div>
+      <div class="container" style="width: 100%;">
         <%= yield %>
       </div>
     </main>
