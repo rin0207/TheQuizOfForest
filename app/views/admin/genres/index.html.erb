@@ -1,0 +1,44 @@
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-2">
+		<P>ジャンルページ</P>
+		<div class="row">
+			<%= form_for(@genre, url: admin_genres_path) do |f| %>
+			<div>
+				<label>ジャンル</label>
+			</div>
+			<div class="col-xs-3">
+				<%= f.text_field :name %>
+			</div>
+			<div class="col-xs-3">
+				<%= f.submit '追加' %>
+			</div>
+			<% end %>
+		</div>
+		<div class="row" style="margin-top: 50px;">
+			<table class="table table-hover">
+				<thead>
+					<tr class="active">
+						<th>ジャンル名</th>
+						<th>クイズ数</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @genres.each do |genre| %>
+					<tr>
+						<td>
+							<%= genre.name %>
+						</td>
+						<td>
+							<%= genre.questions.count %>問
+						</td>
+						<td>
+							<%= link_to "変更する", edit_admin_genre_path(genre), {class: 'btn btn-success'} %>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,32 +1,85 @@
-<div>
-	<div>
-		<P>新着クイズ一覧</P>
+<div class="row">
+	<div class="main-top"></div>
+	<div class="col-xs-2 col-xs-offset-1" style="margin-top: 30px">
+		<div>
+			<%= search_form_for(@q, url:public_questions_search_path) do |f| %>
+			    <div>
+					<%= f.search_field :content_cont %>
+				</div>
+				<div>
+					<%= f.submit "検索" %>
+				</div>
+			<% end %>
+		</div>
+		<div style="margin-top: 20px;">
+			<strong style="font-size: large;">ジャンル検索</strong>
+		</div>
+		<% @genres.each do |genre| %>
+			<div class="col-xs-12">
+				<%= link_to public_genre_questions_path(genre) do %>
+				<div class="genre-name"><%= genre.name %></div>
+	    		<% end %>
+			</div>
+		<% end %>
+	</div>
+	<div class="col-xs-6" style="margin-top: 30px;">
+		<P class="title">新着クイズ一覧</P>
 		<div>
 			<% @question.each do |question| %>
-			    <div>
-			    	<span>
-			    		問題文
+			    <div class="question-solve">
+			    	<div>
+    					<%= attachment_image_tag question, :image, class: "img-square", size:"300x200" %>
+					</div>
+			    	<div class="question-content">
+			    		Q.
 			    		<%= question.content %>
-			    	</span>
-			    	<span>
+			    	</div>
+			    	<div id="check-<%= question.id %>">
 			    		<% question.choices.each do |choice| %>
-			    		    <%= choice.sentence, class: "check" %>
+			    			<div class="check btn btn-info btn-block question-choice">
+			    		    	<%= choice.sentence %>
+			    		    </div>
 			    		<% end %>
-			    	</span>
-			    	<span class="comment", style="display:none"><!-- 解説は初期状態では非表示 -->
-			    		<%= question.comment %>
-			    	</span>
+			    	</div>
+			    	<div class="row">
+			    		<div class="question-genre col-xs-3">
+			    			<%= question.genre.name %>
+			    		</div>
+			    		<div class="col-xs-1 col-xs-offset-8">
+			    			<% if customer_signed_in? %>
+			    				<div id="like-<%= question.id %>">
+  									<%= render partial: "likes/like", locals: { question: question } %>
+								</div>
+							<% end %>
+			    		</div>
+			    	</div>
+			    	<div id="comment-<%= question.id %>" class="comment question-comment", style="display:none"><!-- 解説は初期状態では非表示 -->
+			    		<% question.choices.each do |choice| %>
+			    			<% if choice.is_answer == true %>
+			    		    	<div>正解は　<%= choice.sentence %>　！</div>
+			    			<% end %>
+			    		<% end %>
+			    		<div style="margin-top: 2%;">解説<br>
+			    		<%= question.comment %></div>
+			    	</div>
 			    </div>
 			<% end %>
+			<%= paginate @question %>
 		</div>
 	</div>
 </div>
+<div class="main-bottom"></div>
 
 <script>
-    $(function () {
-	    $('check').on('click', () =>{
-		    $('comment').animate({width: 'show' }, 'slow');
+    //$(function () {
+    	//alert('63')
+	    $('.check').on('click', function() {
+	    	//alert($(this).parent().attr('id'))
+	    	$(this).css('background-color','greenyellow')
+	    	var question_id = $(this).parent().attr('id').split('-')
+		    $('#comment-' + question_id[1]).animate({width: 'show' }, 'slow');
+
 		    //解答を選んだ時に、解説を表示
 	    });
-	});
+	//});
 </script>

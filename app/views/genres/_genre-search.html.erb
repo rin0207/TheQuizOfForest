@@ -1,0 +1,10 @@
+<div>
+	<strong>ジャンル検索</strong>
+</div>
+<% genres.each do |genre| %>
+	<div class="col-xs-12">
+		<%= link_to public_genre_questions_path(genre) do %>
+			<span><%= genre.name %></span>
+	    <% end %>
+	</div>
+<% end %>
