@@ -1,0 +1,203 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.header-item{
+	color: lime;
+	font-weight: bold;
+	border: lime solid 1px;
+	border-radius: 40px;
+	margin-top: 2%;
+}
+
+.header-style{
+	background-color: white;
+	border-bottom: double 2px #2f4f4f;
+}
+
+.main-top{
+	width: 100%;
+	height: 50px;
+	background-image: url(frame-top.gif);
+	background-size: contain;
+	background-position: top;
+}
+
+.main-bottom{
+	width: 100%;
+	height: 50px;
+	background-image: url(frame-bottom.gif);
+	background-size: contain;
+	background-position: bottom;
+}
+
+.top{
+	background-image: url(gorisantree_TP_V.jpg);
+	background-size: cover;
+	background-color: rgba(0.5,0.5,0.5,0.5);
+	width: 100%;
+	height: 570px;
+}
+
+.top-text{
+	font-size: 50px;
+	text-align: center;
+	color: white;
+	text-shadow    : 
+       2px  2px 1px #003366,
+      -2px  2px 1px #003366,
+       2px -2px 1px #003366,
+      -2px -2px 1px #003366,
+       2px  0px 1px #003366,
+       0px  2px 1px #003366,
+      -2px  0px 1px #003366,
+       0px -2px 1px #003366; 
+}
+
+.info{
+	background-image: url(waterfall.jpg);
+	background-size: cover;
+	width: 100%;
+	height: 700px;
+}
+
+.info-text{
+	width: 40%;
+	height: 700px;
+	background-color: rgba(0,0,0,0.5);
+	color: white;
+	font-size: large;
+	padding-top: 250px;
+	padding-left: 50px;
+}
+
+.info-use{
+	background-color: #b0c4de;
+	background-image: url(ivy.jpg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 700px;
+	padding-left: 650px;
+	padding-top: 200px;
+	font-size: large;
+	color: whitesmoke;
+}
+
+.info-make{
+	background-image: url(REDSUG074A016_TP_V.jpg);
+	background-size: cover;
+	width: 100%;
+	height: 700px;
+	padding-left: 400px;
+	padding-top: 100px;
+	font-size: large;
+	color: orange;
+}
+
+.info-caution{
+	background-image: url(trees.png);
+	background-size: cover;
+	width: 100%;
+	height: 700px;
+	padding-left: 450px;
+	padding-top: 300px;
+	font-size: x-large;
+	color: darkorange;
+}
+
+.title{
+	width: 40%;
+    font-size: large;
+	background-color: darkcyan;
+	color: white;
+	text-align: center;
+}
+
+.question-solve{
+	margin-bottom: 2%;
+	padding: 3%;
+	border: solid black 1px;
+	border-radius: 15px;
+	background-color: lightcyan;
+}
+.question-content{
+	padding-bottom: 3%;
+	font-size: large;
+	font-weight: bold;
+}
+.question-choice{
+	display: flex;
+}
+.question-genre{
+	width: 15%;
+	text-align: center;
+	margin-top: 1%;
+	margin-left: 2%;
+	margin-bottom: 1%;
+	border: solid yellow 1px;
+	border-radius: 20px;
+	background-color: yellow;
+}
+
+.genre-name{
+	text-align: center;
+	margin-top: 3%;
+	border: solid yellow 1px;
+	border-radius: 20px;
+	background-color: yellow;
+}
+
+.question-comment{
+	padding-top: 3%;
+	font-size: large;
+	font-weight: bold;
+	border-top: solid black 1px;
+}
+
+.question-allow{
+	width: 13%;
+	border: red 1px solid;
+	border-radius: 15px;
+	margin-top: 10px;
+	text-align: center;
+	color: red;
+}
+
+.question-form{
+	width: 80%;
+	height: 70px;
+}
+
+.choice-form{
+	width: 100%;
+	height: 30px;
+}
+
+.sign-up-page{
+	background-image: url(ELFAIMG_8493_TP_V.jpg);
+	background-size: cover;
+	width: 100%;
+	height: 600px;
+}
+
+.log-in-page{
+	background-image: url(login.jpg);
+	background-size: cover;
+	width: 100%;
+	height: 600px;
+}

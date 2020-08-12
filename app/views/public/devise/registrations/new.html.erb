@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="sign-up-page">
+    <div class="col-xs-3 col-xs-offset-8 sign-up-info" style="margin-top: 50px;">
+      <h2>TFOQへようこそ！</h2>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "public/devise/shared/error_messages", resource: resource %>
+
+        <div class="field">
+          <%= f.label :name, "ニックネーム" %><br />
+          <%= f.text_field :name, autofocus: true, autocomplete: "ユーザー名" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :email, "メールアドレス" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password, "パスワード" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "パスワード" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation,"パスワード（確認用）" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "パスワード（確認用）" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "会員登録する",{class: "btn btn-info"} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

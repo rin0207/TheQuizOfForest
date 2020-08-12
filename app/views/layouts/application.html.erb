@@ -10,6 +10,18 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="navbar-fixed-top">
+      <% if request.fullpath.include? "admin" %><!--　管理者なら -->
+        <%= render 'layouts/admin_header' %>
+      <% else %><!--　会員なら -->
+        <%= render 'layouts/customers_header' %>
+      <% end %>
+    </header>
+    <main>
+      <div style="margin-top: 83px"></div>
+      <div class="container" style="width: 100%;">
+        <%= yield %>
+      </div>
+    </main>
   </body>
 </html>

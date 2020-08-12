@@ -1,0 +1,40 @@
+<div class="container" style="width: 100%;">
+	<div class="row header-style">
+		<div class="col-xs-3 col-xs-offset-1" style="margin-top: 1%">
+			<%= link_to root_path do %>
+				<%= image_tag "logo.png", size: '195x65', alt: "The Forest Of Quiz" %>
+			<% end %>
+		</div>
+		<% if customer_signed_in? %>
+		    <!--<p class="col-xs-3">ようこそ<%= current_customer.name %>さん</p>-->
+		    <div class="col-xs-1 col-xs-offset-2 header-item" style="padding-left: 2.5%;">
+		    	<%= link_to "About", about_path %>
+			</div>
+			<div class="col-xs-1 header-item" style="padding-left: 2%;">
+				<%= link_to "Quiz一覧", public_questions_path %>
+			</div>
+		    <div class="col-xs-1 header-item" style="padding-left: 1.5%;">
+		    	<%= link_to "マイページ", public_customer_path(current_customer) %>
+		    </div>
+		    <div class="col-xs-1 header-item" style="padding-left: 1.5%;">
+		    	<%= link_to "いいね一覧", public_customers_like_customer_id_path(current_customer) %>
+		    </div>
+		    <div class="col-xs-1 header-item" style="padding-left: 1.5%;">
+		    	<%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+		    </div>
+		<% else %>
+			<div class="col-xs-1 col-xs-offset-3 header-item" style="padding-left: 2.5%;">
+		    	<%= link_to "About", about_path %>
+			</div>
+			<div class="col-xs-1 header-item" style="padding-left: 2%;">
+				<%= link_to "Quiz一覧", public_questions_path %>
+			</div>
+			<div class="col-xs-1 header-item" style="padding-left: 2%;">
+		    	<%= link_to "会員登録", new_customer_registration_path %>
+		    </div>
+		    <div class="col-xs-1 header-item" style="padding-left: 2%;">
+		    	<%= link_to "ログイン", new_customer_session_path %>
+			</div>		    		
+		<% end %>
+	</div>
+</div>
