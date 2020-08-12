@@ -1,23 +1,23 @@
-<div>
-	<div>
+<div class="row">
+	<div class="col-xs-8 col-xs-offset-2">
 		<P>ジャンルページ</P>
-		<div>
+		<div class="row">
 			<%= form_for(@genre, url: admin_genres_path) do |f| %>
-			<diV>
-				<label>ジャンル</label>
-			</diV>
 			<div>
+				<label>ジャンル</label>
+			</div>
+			<div class="col-xs-3">
 				<%= f.text_field :name %>
 			</div>
-			<div>
+			<div class="col-xs-3">
 				<%= f.submit '追加' %>
 			</div>
 			<% end %>
 		</div>
-		<div>
-			<table>
+		<div class="row" style="margin-top: 50px;">
+			<table class="table table-hover">
 				<thead>
-					<tr>
+					<tr class="active">
 						<th>ジャンル名</th>
 						<th>クイズ数</th>
 						<th></th>
@@ -29,9 +29,11 @@
 						<td>
 							<%= genre.name %>
 						</td>
-						<td></td>
 						<td>
-							<%= link_to "変更する", admin_genres_path %>
+							<%= genre.questions.count %>問
+						</td>
+						<td>
+							<%= link_to "変更する", edit_admin_genre_path(genre), {class: 'btn btn-success'} %>
 						</td>
 					</tr>
 					<% end %>

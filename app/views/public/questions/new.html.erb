@@ -1,9 +1,20 @@
 <div class="row">
 	<div class="main-top"></div>
-	<div class="col-xs-6 col-xs-offset-4">
-		<p>新規クイズ作成</p>
+	<div class="col-xs-6 col-xs-offset-3">
+		<p class="title">新規クイズ作成</p>
 		<div class="row">
 		    <%= form_for(@question, url: public_questions_path) do |f| %>
+		    	<div style="margin-bottom: 30px;">
+        			<div class="question-image">
+        				<label>問題画像<br>
+        				       （画像が必要なクイズのみ<br>
+        				       選択してください）</label>
+        				<%= attachment_image_tag @question, :image, class: "img-square", fallback: "no_image.jpg", size:"300x200" %>
+      　				</div>
+      				<div style="margin-left: 25%;">
+        				<%= f.attachment_field :image %>
+        			</div>
+    			</div>
 		        <div class="form-group">
 		    	    <label class="col-xs-2">問題文</label>
 		    	    <div class="col-xs-10">
@@ -12,7 +23,7 @@
 		        </div>
 		        <div class="col-xs-10">
 		        	<p style="margin-top: 20px;">
-		        		＊正解の選択肢には正答ボタンにチェックを入れて下さい。
+		        		＊正解の選択肢には正ボタンにチェックを入れて下さい。
 		        	</p>
 		        </div>
 		        <%= f.fields_for :choices do |i| %><!--choiceテーブルに保存-->
@@ -26,7 +37,9 @@
 		        	</div>
 		        	<div class="col-xs-2">
 		        		<%= i.radio_button :is_answer, :true %>
-			        	<%= i.label :is_answer, "正答" %>
+			        	<%= i.label :is_answer, "正" %>
+			        	<%= i.radio_button :is_answer, :false %>
+			        	<%= i.label :is_answer, "誤" %>
 			        </div>
 		        </div>
 		        <% end %>
@@ -55,3 +68,21 @@
 	</div>
 </div>
 <div class="main-bottom"></div>
+
+
+<script type="text/javascript">
+$(function(){
+    // inputのidから情報の取得
+    $('#question_image').on('change', function (e) {
+// ここから既存の画像のurlの取得
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        console.log(e.target.result)
+        $(".image").attr('src', e.target.result);
+    }
+// ここまで
+    reader.readAsDataURL(e.target.files[0]); //取得したurlにアップロード画像のurlを挿入
+});
+});
+
+</script>

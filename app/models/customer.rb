@@ -5,4 +5,7 @@ class Customer < ApplicationRecord
            :recoverable, :rememberable, :validatable
     has_many :questions
     has_many :likes, dependent: :destroy
+    has_many :liked_question, through: :likes, source: :question
+
+   attachment :image
 end

@@ -23,46 +23,63 @@
 		<% end %>
 	</div>
 	<div class="col-xs-6" style="margin-top: 30px;">
-		<P>新着クイズ一覧</P>
+		<P class="title">新着クイズ一覧</P>
 		<div>
 			<% @question.each do |question| %>
 			    <div class="question-solve">
+			    	<div>
+    					<%= attachment_image_tag question, :image, class: "img-square", size:"300x200" %>
+					</div>
 			    	<div class="question-content">
 			    		Q.
 			    		<%= question.content %>
 			    	</div>
-			    	<div>
+			    	<div id="check-<%= question.id %>">
 			    		<% question.choices.each do |choice| %>
 			    			<div class="check btn btn-info btn-block question-choice">
 			    		    	<%= choice.sentence %>
 			    		    </div>
 			    		<% end %>
 			    	</div>
-			    	<div>
-			    		<div class="question-genre">
+			    	<div class="row">
+			    		<div class="question-genre col-xs-3">
 			    			<%= question.genre.name %>
 			    		</div>
-			    		<div>
-			    			<td id="like-<%= question.id %>">
-  								<%= render partial: "likes/like", locals: { question: question } %>
-							</td>
+			    		<div class="col-xs-1 col-xs-offset-8">
+			    			<% if customer_signed_in? %>
+			    				<div id="like-<%= question.id %>">
+  									<%= render partial: "likes/like", locals: { question: question } %>
+								</div>
+							<% end %>
 			    		</div>
 			    	</div>
-			    	<div class="comment", style="display:none"><!-- 解説は初期状態では非表示 -->
-			    		<%= question.comment %>
+			    	<div id="comment-<%= question.id %>" class="comment question-comment", style="display:none"><!-- 解説は初期状態では非表示 -->
+			    		<% question.choices.each do |choice| %>
+			    			<% if choice.is_answer == true %>
+			    		    	<div>正解は　<%= choice.sentence %>　！</div>
+			    			<% end %>
+			    		<% end %>
+			    		<div style="margin-top: 2%;">解説<br>
+			    		<%= question.comment %></div>
 			    	</div>
 			    </div>
 			<% end %>
+			<%= paginate @question %>
 		</div>
 	</div>
 </div>
 <div class="main-bottom"></div>
 
 <script>
-    $(function () {
-	    $('check').on('click', () =>{
-		    $('comment').animate({width: 'show' }, 'slow');
+    //$(function () {
+    	//alert('63')
+	    $('.check').on('click', function() {
+	    	//alert($(this).parent().attr('id'))
+	    	$(this).css('background-color','greenyellow')
+	    	var question_id = $(this).parent().attr('id').split('-')
+		    $('#comment-' + question_id[1]).animate({width: 'show' }, 'slow');
+
 		    //解答を選んだ時に、解説を表示
 	    });
-	});
+	//});
 </script>

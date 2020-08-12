@@ -1,9 +1,9 @@
 <div class="row">
 	<div class="main-top"></div>
 	<div class="col-xs-6 col-xs-offset-3">
-		<p>新規クイズ作成</p>
+		<p class="title">クイズ編集</p>
 		<div class="row">
-		    <%= form_for(@question, url: admin_questions_path) do |f| %>
+		    <%= form_for(@question, url: public_question_path) do |f| %>
 		    	<div style="margin-bottom: 30px;">
         			<div class="question-image">
         				<label>問題画像<br>
@@ -23,7 +23,7 @@
 		        </div>
 		        <div class="col-xs-10">
 		        	<p style="margin-top: 20px;">
-		        		＊正解の選択肢には正答ボタンにチェックを入れて下さい。
+		        		＊正解の選択肢には正ボタンにチェックを入れて下さい。
 		        	</p>
 		        </div>
 		        <%= f.fields_for :choices do |i| %><!--choiceテーブルに保存-->
@@ -61,7 +61,7 @@
 		        	</div>
 		        </div>
 		        <div class="form-group col-xs-10" style="margin-top: 30px;">
-		        	<%= f.submit "作成する",{class: 'btn btn-primary'} %>
+		        	<%= f.submit "申請する",{class: 'btn btn-primary'} %>
 		        </div>
 		    <% end %>
 	    </div>

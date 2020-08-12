@@ -1,31 +1,51 @@
-<div>
-	<div>
-		<p><%= @customer.name %>さんのマイページ</p>
-		<div>
-			Name<%= @customer.name %>
-			Email<%= @customer.email %>
-		</div>
-		<div>
+<div class="row">
+	<div class="main-top"></div>
+	<div style="margin-top: 3%; ">
+		<table class="col-xs-2 col-xs-offset-1">
+			<tr style="border-bottom: solid black 1px;">
+				<th>Name</th>
+				<th><%= @customer.name %></th>
+			</tr>
+			<tr style="border-bottom: solid black 1px;">
+				<th>Email</th>
+				<th><%= @customer.email %></th>
+			</tr>
+		</table>
+		<div class="col-xs-6 col-xs-offset-1">
+			<p><%= @customer.name %>さんが作成したクイズ一覧</p>
+			<div>
 			<% @question.each do |question| %>
-			    <div>
-			    	<span>
-			    		問題文
+			    <div class="question-solve">
+			    	<div class="question-content">
+			    		Q.
 			    		<%= question.content %>
-			    	</span>
-			    	<span>
+			    	</div>
+			    	<div>
 			    		<% question.choices.each do |choice| %>
-			    		    <%= choice.sentence, class: "check" %>
+			    			<div class="check btn btn-info btn-block question-choice">
+			    		    	<%= choice.sentence %>
+			    		    </div>
 			    		<% end %>
-			    	</span>
-			    	<span>
-			    		<!-- このページでは解説を非表示しない -->
-			    		<%= question.comment %>
-			    	</span>
-			    	<span>
-			    		<%= link_to "編集する", edit_public_question_path %>
-			    	</span>
+			    	</div>
+			    	<div class="row">
+			    		<div class="question-genre col-xs-3">
+			    			<%= question.genre.name %>
+			    		</div>
+			    	</div>
+			    	<div class="comment question-comment">
+			    		<% question.choices.each do |choice| %>
+			    			<% if choice.is_answer == true %>
+			    		    	<div>正解は　<%= choice.sentence %>　！</div>
+			    			<% end %>
+			    		<% end %>
+			    		解説<br>
+			    		<%= question.comment %><br>
+			    		<%= link_to "編集する", edit_public_question_path(question), {class: 'btn btn-success'} %>
+			    	</div>
 			    </div>
 			<% end %>
+			</div>
 		</div>
 	</div>
 </div>
+<div class="main-bottom" style="margin-top: 3%;"></div>

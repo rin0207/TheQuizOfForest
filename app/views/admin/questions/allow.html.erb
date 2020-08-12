@@ -23,7 +23,7 @@
 		<% end %>
 	</div>
 	<div class="col-xs-6" style="margin-top: 30px;">
-		<P class="title">クイズ一覧</P>
+		<P class="title">許可待ちクイズ一覧</P>
 		<div>
 			<% @question.each do |question| %>
 			    <div class="question-solve">
@@ -34,10 +34,13 @@
 			    		Q.
 			    		<%= question.content %>
 			    	</div>
-			    	<div id="check-<%= question.id %>">
+			    	<div>
 			    		<% question.choices.each do |choice| %>
 			    			<div class="check btn btn-info btn-block question-choice">
 			    		    	<%= choice.sentence %>
+			    		    	<% if choice.is_answer == true %>
+			    		    	<div style="margin: 0 0 0 auto;">正答</div>
+			    		    	<% end %>
 			    		    </div>
 			    		<% end %>
 			    	</div>
@@ -45,22 +48,16 @@
 			    		<div class="question-genre col-xs-3">
 			    			<%= question.genre.name %>
 			    		</div>
-			    		<div class="col-xs-1 col-xs-offset-8">
-			    			<% if customer_signed_in? %>
-			    				<div id="like-<%= question.id %>">
-  									<%= render partial: "likes/like", locals: { question: question } %>
-								</div>
-							<% end %>
-			    		</div>
 			    	</div>
-			    	<div id="comment-<%= question.id %>" class="comment question-comment", style="display:none"><!-- 解説は初期状態では非表示 -->
-			    		<% question.choices.each do |choice| %>
-			    			<% if choice.is_answer == true %>
-			    		    	<div>正解は　<%= choice.sentence %>　！</div>
-			    			<% end %>
-			    		<% end %>
-			    		<div style="margin-top: 2%;">解説<br>
-			    		<%= question.comment %></div>
+			    	<div class="comment question-comment">
+			    		<!-- 自分で作ったクイズの解説は非表示しない -->
+			    		解説<br>
+			    		<%= question.comment %><br>
+			    		<%= link_to "編集する", edit_admin_question_path(question), {class: 'btn btn-success'} %>
+			    		<%= form_for [:admin, question] do |f| %>
+						<%= f.select :is_allowed, Question.is_alloweds.keys.to_a %>
+						<%= f.submit '更新' , {class: 'btn btn-primary'} %>
+						<% end %>
 			    	</div>
 			    </div>
 			<% end %>
@@ -69,17 +66,3 @@
 	</div>
 </div>
 <div class="main-bottom"></div>
-
-<script>
-    //$(function () {
-    	//alert('63')
-	    $('.check').on('click', function() {
-	    	//alert($(this).parent().attr('id'))
-	    	$(this).css('background-color','greenyellow')
-	    	var question_id = $(this).parent().attr('id').split('-')
-		    $('#comment-' + question_id[1]).animate({width: 'show' }, 'slow');
-
-		    //解答を選んだ時に、解説を表示
-	    });
-	//});
-</script>

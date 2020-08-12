@@ -1,0 +1,26 @@
+<div class="container" style="width: 100%;">
+	<div class="row header-style">
+		<div class="col-xs-3 col-xs-offset-1" style="margin-top: 1%">
+			<%= link_to root_path do %>
+				<%= image_tag "logo.png", size: '195x65', alt: "The Forest Of Quiz" %>
+			<% end %>管理者サイト
+		</div>
+		<% if admin_signed_in? %>
+			<div class="col-xs-1 col-xs-offset-2 header-item" style="padding-left: 2%;">
+			    <%= link_to "会員一覧", admin_customers_path %>
+			</div>
+			<div class="col-xs-1 header-item">
+				<%= link_to "申請中Quiz", admin_questions_allow_path %>
+			</div>
+			<div class="col-xs-1 header-item" style="padding-left: 1.5%;">
+			    <%= link_to "クイズ一覧", admin_questions_path %>
+			</div>
+			<div class="col-xs-1 header-item" style="padding-left: 2%;">
+			    <%= link_to "ジャンル", admin_genres_path %>
+			</div>
+			<div class="col-xs-1 header-item" style="padding-left: 1.5%;">
+			    <%= link_to "ログアウト",destroy_admin_session_path, method: :delete %>
+			</div>
+		<% end %>
+	</div>
+</div>

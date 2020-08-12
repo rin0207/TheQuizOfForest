@@ -12,25 +12,7 @@
   <body>
     <header class="navbar-fixed-top">
       <% if request.fullpath.include? "admin" %><!--　管理者なら -->
-          <nav>管理者ページ</nav>
-          <% if admin_signed_in? %>
-          <nav>
-            <ul>
-              <li>
-                <%= link_to "会員一覧", admin_customers_path %>
-              </li>
-              <li>
-                <%= link_to "申請中一覧", admin_questions_path %>
-              </li>
-              <li>
-                <%= link_to "クイズ一覧", admin_questions_path %>
-              </li>
-              <li>
-                <%= link_to "ログアウト",destroy_admin_session_path, method: :delete %>
-              </li>
-            </ul>
-          </nav>
-          <% end %>
+        <%= render 'layouts/admin_header' %>
       <% else %><!--　会員なら -->
         <%= render 'layouts/customers_header' %>
       <% end %>

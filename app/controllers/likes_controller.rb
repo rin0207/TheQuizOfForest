@@ -3,6 +3,7 @@ class LikesController < ApplicationController
 
     def create
       @like = Like.create(customer_id: current_customer.id, question_id: @question.id)
+      @question = Question.find(params[:question_id])
     end
 
     def destroy
