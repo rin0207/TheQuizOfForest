@@ -32,7 +32,7 @@
 .main-top{
 	width: 100%;
 	height: 50px;
-	background-image: url(frame-top.gif);
+	background-image: image-url("frame-top.gif");
 	background-size: contain;
 	background-position: top;
 }
@@ -40,13 +40,13 @@
 .main-bottom{
 	width: 100%;
 	height: 50px;
-	background-image: url(frame-bottom.gif);
+	background-image: image-url("frame-bottom.gif");
 	background-size: contain;
 	background-position: bottom;
 }
 
 .top{
-	background-image: url(gorisantree_TP_V.jpg);
+	background-image: image-url("gorisantree_TP_V.jpg");
 	background-size: cover;
 	background-color: rgba(0.5,0.5,0.5,0.5);
 	width: 100%;
@@ -68,8 +68,15 @@
        0px -2px 1px #003366; 
 }
 
+.top-text-admin{
+	margin-top: 150px;
+	font-size: 3px;
+	text-align: center;
+	color: white;
+}
+
 .info{
-	background-image: url(waterfall.jpg);
+	background-image: image-url("waterfall.jpg");
 	background-size: cover;
 	width: 100%;
 	height: 700px;
@@ -87,7 +94,7 @@
 
 .info-use{
 	background-color: #b0c4de;
-	background-image: url(ivy.jpg);
+	background-image: image-url("ivy.jpg");
 	background-size: contain;
 	background-repeat: no-repeat;
 	width: 100%;
@@ -99,7 +106,7 @@
 }
 
 .info-make{
-	background-image: url(REDSUG074A016_TP_V.jpg);
+	background-image: image-url("REDSUG074A016_TP_V.jpg");
 	background-size: cover;
 	width: 100%;
 	height: 700px;
@@ -110,7 +117,7 @@
 }
 
 .info-caution{
-	background-image: url(trees.png);
+	background-image: image-url("trees.png");
 	background-size: cover;
 	width: 100%;
 	height: 700px;
@@ -162,6 +169,15 @@
 	background-color: yellow;
 }
 
+.tag-name{
+	text-align: center;
+	margin-top: 3%;
+	border: solid yellow 1px;
+	border-radius: 20px;
+	background-color: blue;
+	color: white;
+}
+
 .question-comment{
 	padding-top: 3%;
 	font-size: large;
@@ -178,6 +194,19 @@
 	color: red;
 }
 
+.question-tag{
+	width: 15%;
+	text-align: center;
+	margin-top: 1%;
+	margin-left: 2%;
+	margin-bottom: 1%;
+	border: solid yellow 1px;
+	border-radius: 20px;
+	background-color: blue;
+	float: left;
+	color: white;
+}
+
 .question-form{
 	width: 80%;
 	height: 70px;
@@ -189,14 +218,14 @@
 }
 
 .sign-up-page{
-	background-image: url(ELFAIMG_8493_TP_V.jpg);
+	background-image: image-url("ELFAIMG_8493_TP_V.jpg");
 	background-size: cover;
 	width: 100%;
 	height: 600px;
 }
 
 .log-in-page{
-	background-image: url(login.jpg);
+	background-image: image-url("login.jpg");
 	background-size: cover;
 	width: 100%;
 	height: 600px;

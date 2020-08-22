@@ -16,6 +16,9 @@
 			<div>
 			<% @question.each do |question| %>
 			    <div class="question-solve">
+			    	<div>
+    					<%= attachment_image_tag question, :image, class: "img-square", size:"300x200" %>
+					</div>
 			    	<div class="question-content">
 			    		Q.
 			    		<%= question.content %>
@@ -31,6 +34,9 @@
 			    		<div class="question-genre col-xs-3">
 			    			<%= question.genre.name %>
 			    		</div>
+			    		<% question.question_tags.each do |question_tag| %>
+                      		<div class="question-tag"><%= question_tag.tag.name %></div>
+                    	<% end %>
 			    	</div>
 			    	<div class="comment question-comment">
 			    		<% question.choices.each do |choice| %>

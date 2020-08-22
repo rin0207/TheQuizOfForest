@@ -42,6 +42,9 @@
   								<%= render partial: "likes/like", locals: { question: question } %>
 							</div>
 			    		</div>
+			    		<% question.question_tags.each do |question_tag| %>
+                      		<div class="question-tag"><%= question_tag.tag.name %></div>
+                    	<% end %>
 			    	</div>
 			    	<div class="comment question-comment">
 			    		<!-- 自分で作ったクイズの解説は非表示しない -->
