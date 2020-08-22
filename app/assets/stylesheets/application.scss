@@ -68,6 +68,13 @@
        0px -2px 1px #003366; 
 }
 
+.top-text-admin{
+	margin-top: 150px;
+	font-size: 3px;
+	text-align: center;
+	color: white;
+}
+
 .info{
 	background-image: image-url("waterfall.jpg");
 	background-size: cover;
@@ -162,6 +169,15 @@
 	background-color: yellow;
 }
 
+.tag-name{
+	text-align: center;
+	margin-top: 3%;
+	border: solid yellow 1px;
+	border-radius: 20px;
+	background-color: blue;
+	color: white;
+}
+
 .question-comment{
 	padding-top: 3%;
 	font-size: large;
@@ -176,6 +192,19 @@
 	margin-top: 10px;
 	text-align: center;
 	color: red;
+}
+
+.question-tag{
+	width: 15%;
+	text-align: center;
+	margin-top: 1%;
+	margin-left: 2%;
+	margin-bottom: 1%;
+	border: solid yellow 1px;
+	border-radius: 20px;
+	background-color: blue;
+	float: left;
+	color: white;
 }
 
 .question-form{

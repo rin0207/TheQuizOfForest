@@ -52,6 +52,9 @@
 								</div>
 							<% end %>
 			    		</div>
+			    		<% question.question_tags.each do |question_tag| %>
+                      		<div class="question-tag"><%= question_tag.tag.name %></div>
+                    	<% end %>
 			    	</div>
 			    	<div id="comment-<%= question.id %>" class="comment question-comment", style="display:none"><!-- 解説は初期状態では非表示 -->
 			    		<% question.choices.each do |choice| %>

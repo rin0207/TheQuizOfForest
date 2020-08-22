@@ -16,7 +16,7 @@
 		</div>
 		<% @genres.each do |genre| %>
 			<div class="col-xs-12">
-				<%= link_to public_genre_questions_path(genre) do %>
+				<%= link_to admin_genre_questions_path(genre) do %>
 				<div class="genre-name"><%= genre.name %></div>
 	    		<% end %>
 			</div>
@@ -48,6 +48,9 @@
 			    		<div class="question-genre col-xs-3">
 			    			<%= question.genre.name %>
 			    		</div>
+			    		<% question.question_tags.each do |question_tag| %>
+                      		<div class="question-tag"><%= question_tag.tag.name %></div>
+                    	<% end %>
 			    	</div>
 			    	<div class="comment question-comment">
 			    		<!-- 自分で作ったクイズの解説は非表示しない -->
@@ -63,6 +66,18 @@
 			<% end %>
 			<%= paginate @question %>
 		</div>
+	</div>
+	<div class="col-xs-2">
+		<div style="margin-top: 20px;">
+			<strong style="font-size: large;">タグ検索</strong>
+		</div>
+		<% @tags.each do |tag| %>
+			<div class="col-xs-12">
+				<%= link_to public_tag_questions_path(tag) do %>
+					<div class="tag-name"><%= tag.name %></div>
+				<% end %>
+			</div>
+		<% end %>
 	</div>
 </div>
 <div class="main-bottom"></div>

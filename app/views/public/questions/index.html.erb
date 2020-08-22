@@ -52,6 +52,9 @@
 								</div>
 							<% end %>
 			    		</div>
+			    		<% question.question_tags.each do |question_tag| %>
+                      		<div class="question-tag"><%= question_tag.tag.name %></div>
+                    	<% end %>
 			    	</div>
 			    	<div id="comment-<%= question.id %>" class="comment question-comment", style="display:none"><!-- 解説は初期状態では非表示 -->
 			    		<% question.choices.each do |choice| %>
@@ -66,6 +69,18 @@
 			<% end %>
 			<%= paginate @question %>
 		</div>
+	</div>
+	<div class="col-xs-2">
+		<div style="margin-top: 20px;">
+			<strong style="font-size: large;">タグ検索</strong>
+		</div>
+		<% @tags.each do |tag| %>
+			<div class="col-xs-12">
+				<%= link_to admin_tag_questions_path(tag) do %>
+					<div class="tag-name"><%= tag.name %></div>
+				<% end %>
+			</div>
+		<% end %>
 	</div>
 </div>
 <div class="main-bottom"></div>

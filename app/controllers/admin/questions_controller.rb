@@ -19,14 +19,22 @@ class Admin::QuestionsController < ApplicationController
 	def index
 		@q = Question.ransack(params[:q])
 		@genres = Genre.all
+		@tags = Tag.all
 		# もしURLに[:genre_id]が含まれていたら
         if params[:genre_id]
             # その[:genre_id]のデータをGenreから@genreに格納
             @genre = Genre.find(params[:genre_id])
             # @genreに紐付いたクイズを表示
-            @question = @genre.questions.order(id: "DESC").page(params[:page])
+            @question = @genre.questions.page(params[:page]).per(5).order(id: "DESC").where(is_allowed: "許可")
+        elsif params[:tag_id]# tag_idがあれば
+        	question_tags = QuestionTag.where(tag_id: params[:tag_id])
+			question_ids = []
+			question_tags.each do |question_tag|
+			  question_ids.push(question_tag.question.id)
+			end
+			@question = Question.where(id: question_ids).page(params[:page]).per(5).order(id: "DESC").where(is_allowed: "許可")
         else
-            @question = @q.result.order(id: "DESC").page(params[:page])#検索結果を新しいものから表示
+            @question = @q.result.page(params[:page]).per(5).order(id: "DESC").where(is_allowed: "許可")#検索結果を新しいものから表示
         end
 	end
 
@@ -38,7 +46,14 @@ class Admin::QuestionsController < ApplicationController
             # その[:genre_id]のデータをGenreから@genreに格納
             @genre = Genre.find(params[:genre_id])
             # @genreに紐付いたクイズを表示
-            @question = @genre.questions.page(params[:page]).order(id: "DESC").where(is_allowed: "許可待ち")
+            @question = @genre.questions.page(params[:page]).per(5).order(id: "DESC").where(is_allowed: "許可")
+        elsif params[:tag_id]# tag_idがあれば
+        	question_tags = QuestionTag.where(tag_id: params[:tag_id])
+			question_ids = []
+			question_tags.each do |question_tag|
+			  question_ids.push(question_tag.question.id)
+			end
+			@question = Question.where(id: question_ids).page(params[:page]).per(5).order(id: "DESC").where(is_allowed: "許可")
         else
             @question = @q.result.page(params[:page]).order(id: "DESC").where(is_allowed: "許可待ち")#検索結果を新しいものから表示
         end
